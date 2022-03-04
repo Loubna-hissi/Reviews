@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Review from './Review'
+import useFetch from './useFetch'
 function App() {
+const {Loading,error,data}=useFetch('http://localhost:9000/reviews')
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+    {Loading &&<h3>{Loading}</h3>}
+    {error &&<h3>{error}</h3>}
+    {data && <Review reviews={data} ></Review>}
+   </div>
   );
 }
-
 export default App;
